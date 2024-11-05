@@ -1,0 +1,217 @@
+<% include('../layouts/header.ejs') %>
+
+<% 
+if(typeof message !=='undefined'){
+  %>
+  <p style="color: rgb(2, 241, 2);"><%=message %></p>
+  <%
+}
+
+%>
+
+<div class="wrapper">
+  <form action="/login" method="post" id="loginForm">
+    <h1> User Login</h1>
+
+    <div class="input-box">
+      <input type="email" name="email" id="email" placeholder="Enter the email" >
+      <i class='bx bxs-user'></i>
+    </div>
+
+    <div class="input-box">
+      <input type="password" name="password" id="password" placeholder="Enter the password" >
+      <i class='bx bxs-lock-alt'></i>
+      <button type="button" class="toggle-password">👁️</button>
+    </div>
+
+    <div class="remember-forget">
+      <label><input type="checkbox">Remember me</label>
+      <a href="#">Forgot password?</a>
+    </div>
+
+    <button type="submit" class="btn">Login</button>
+
+    <div class="register-link">
+      <p>Don't have an account? <br>
+      <a href="register">Register</a></p>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const togglePassword = document.querySelector(".toggle-password");
+    const passwordInput = document.querySelector("#password");
+    const loginForm = document.querySelector("#loginForm");
+
+    togglePassword.addEventListener("click", function () {
+      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+      passwordInput.setAttribute("type", type);
+      this.textContent = type === "password" ? "👁️" : "🔒";
+    });
+
+    loginForm.addEventListener("submit", function (e) {
+      const email = document.querySelector("#email").value;
+      const password = passwordInput.value;
+
+      // Email validation pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        e.preventDefault();
+        return;
+      }
+
+      // Password length validation
+      if (password.length < 3) {
+        alert("Password must be at least 8 characters long.");
+        e.preventDefault();
+        return;
+      }
+    });
+  });
+</script>
+
+<style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('https://i.postimg.cc/rmWWDgCp/background.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.wrapper{
+  width: 420px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+  color: #fff;
+  padding: 30px 40px;
+}
+
+.wrapper h1{
+  font-size: 36px;
+  text-align: center;
+}
+
+.wrapper .input-box{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+}
+
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 40px 20px 20px;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 40px;
+}
+
+.input-box input::placeholder{
+  color: #fff;
+}
+
+.input-box i{
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.wrapper .remember-forget{
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin: 20px 0 15px;
+}
+
+.remember-forget label input{
+  accent-color: #fff;
+  margin-right: 10px;
+}
+
+.remember-forget a{
+  color: #fff;
+  text-decoration: none;
+}
+
+.remember-forget a:hover{
+  text-decoration: underline;
+}
+
+.wrapper .btn{
+  width: 100%;
+  height: 45px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  cursor: pointer;
+  color: #333;
+  font-weight: 600;
+  transition: .5s;
+}
+
+.wrapper .btn:hover{
+  background: rgba(255, 255, 255, .2);
+  color: #fff;
+  border-color: #fff;
+}
+
+.wrapper .register-link{
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+
+.register-link p a{
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.register-link p a:hover{
+  text-decoration: underline;
+}
+
+.toggle-password {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #333; }
+    .input-box {
+    position: relative;
+  }
+</style>
+
+
+<% include('../layouts/footer.ejs') %>
+
+  
+
