@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const bcrypt=require("bcrypt")
 
-
+//password secure 
 
 const securepassword=async(password)=>{
     try {
@@ -76,6 +76,8 @@ const loginLoad=async(req, res)=>{
     }
 }
 
+//user verify 
+
 const verifyLogin=async(req,res)=>{
     
     try {
@@ -114,6 +116,8 @@ const verifyLogin=async(req,res)=>{
     }
 }
 
+//login home page
+
 const loadHome=async(req,res)=>{
     try {
         
@@ -125,6 +129,7 @@ const loadHome=async(req,res)=>{
     }
 }
 
+//user logout
 
 const userLogout=async(req,res)=>{
     try {

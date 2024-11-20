@@ -20,7 +20,7 @@ admin_route.get('/',adiminAuth.isAdminlogout,adminController.loginAdmin)
 admin_route.post('/',adminController.verifyAdmin)
 
 admin_route.get('/addUsers',adiminAuth.isAdminlogin,adminController.addUsers)
-admin_route.post('/addUsers',adminController.addnewUser)
+admin_route.post('/addUsers',adiminAuth.isAdminlogin,adminController.addnewUser)
 
 admin_route.get('/dashBoard',adiminAuth.isAdminlogin,adminController.loadHome)
 
@@ -29,7 +29,7 @@ admin_route.get('/searchUser',adiminAuth.isAdminlogin,adminController.searchUser
 
 admin_route.get('/dashBoard',adminController.loadHome);
 admin_route.get('/editUser',adiminAuth.isAdminlogin,adminController.editUser)
-admin_route.post('/editUser',adminController.updateUser)
+admin_route.post('/editUser',adiminAuth.isAdminlogin,adminController.updateUser)
 
 admin_route.get('/adminLogout',adiminAuth.isAdminlogin,adminController.adminLogout)
 admin_route.get('/deleteUser',adiminAuth.isAdminlogin,adminController.deleteUsers)

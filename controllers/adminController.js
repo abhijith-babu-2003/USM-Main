@@ -103,7 +103,7 @@ const addUsers=async (req,res)=>{
 
 const addnewUser=async(req,res)=>{
     try {
-       
+       console.log('add new user')
         const name=req.body.username
         const email=req.body.email
         const password = randomstring.generate(8);
@@ -120,7 +120,8 @@ const addnewUser=async(req,res)=>{
         })
 
         const userData=await user.save()
-
+        console.log(userData);
+        
         if(userData){
           
             res.redirect('/admin/dashboard')
@@ -219,15 +220,6 @@ const searchUsers = async (req, res) => {
         res.status(500).send('Error retrieving search results');
     }
 };
-// const adminLogout=async(req,res)=>{
-//     try {
-//         req.session.destroy();
-//         res.redirect('/')
-//     } catch (error) {
-//         console.log(error.message);
-        
-//     }
-// }
 
 const adminLogout = async (req, res) => {
     try {
