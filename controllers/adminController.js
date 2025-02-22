@@ -22,8 +22,6 @@ const securepassword=async(password)=>{
 
 const loginAdmin= async (req,res)=>{
     try {
-
-      
         res.render('adminLogin')
       
     } catch (error) {
